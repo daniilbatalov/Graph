@@ -28,14 +28,6 @@ void Draw::doPainting(bool x)
   }
   for(auto n : nodes)
   {
-      if (n.isHigh())
-      {
-          painter.setBrush(QBrush(QColor(36, 99, 224)));
-      }
-      else
-      {
-          painter.setBrush(QBrush(QColor(255, 255, 255)));
-      }
       painter.drawEllipse(QPoint(n.get_x(), n.get_y()), 20, 20);
       if (x)
       {

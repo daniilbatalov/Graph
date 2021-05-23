@@ -1,7 +1,6 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include <iostream>
-#include <QTimer>
 MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
@@ -30,10 +29,6 @@ Draw* MainWindow::getDrawR()
 {
     return ui->widget_2;
 }
-int MainWindow::getSpeed()
-{
-    return this->speed;
-}
 MainWindow::~MainWindow()
 {
     delete ui;
@@ -54,20 +49,10 @@ void MainWindow::onMakeEgdePushButtonClicked()
         }
     }
 
-
-    if (values.empty())
-    {
-
-    }
-    else
+    if (!values.empty())
     {
         emit edgeS(values[0], values[1]);
     }
-}
-
-void MainWindow::on_horizontalSlider_valueChanged(int value)
-{
-    speed = value - speed;
 }
 
 void MainWindow::on_goButton_clicked()
@@ -75,31 +60,5 @@ void MainWindow::on_goButton_clicked()
     QLineEdit* line = ui->goLineEdit;
     int value = line->text().toInt();
     line->clear();
-    emit goS(value, speed);
-}
-
-void MainWindow::on_resetButton_clicked()
-{
-    ui->label_3->setText("Выполнено!");
-    QEventLoop el;
-    QTimer t;
-    connect(&t, SIGNAL(timeout()), &el, SLOT(quit()));
-    t.start(3000);
-    el.exec();
-    ui->label_3->setText("");
-    emit resetS();
-}
-void MainWindow::pause()
-{
-    QEventLoop el;
-    QTimer t;
-    connect(&t, SIGNAL(timeout()), &el, SLOT(quit()));
-    t.start(speed);
-    el.exec();
-    return;
-}
-
-void MainWindow::on_horizontalSlider_sliderMoved(int position)
-{
-    ui->label_2->setText(QString("Скорость визуализации: %1 с").arg((static_cast<float>(position)) / 1000));
+    emit goS(value);
 }

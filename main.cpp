@@ -3,23 +3,16 @@
 #include <QFrame>
 #include <QGridLayout>
 #include <QGraphicsView>
-#include <QSizePolicy>
-#include <QTime>
 #include <iostream>
 #include "mainwindow.h"
 #include "draw.h"
 #include "graph.h"
-
-
 
 int main(int argc, char *argv[]) {
 
   QApplication app(argc, argv);
   Graph graph;
   MainWindow window;
-  QSizePolicy qsp(QSizePolicy::Preferred,QSizePolicy::Preferred);
-  qsp.setHeightForWidth(true);
-  window.setSizePolicy(qsp);
   QPushButton* psh = window.getNodeButton();
   QPushButton* vrg = window.getEdgeButton();
   QLineEdit* lftdt = window.getLeftEdit();
@@ -37,8 +30,6 @@ int main(int argc, char *argv[]) {
   QObject::connect(dr_l, &Draw::drawnE, lftdt, &QLineEdit::clear);
   QObject::connect(dr_l, &Draw::drawnE, rgtdt, &QLineEdit::clear);
   QObject::connect(&window, &MainWindow::goS, &graph, &Graph::DFS);
-  QObject::connect(&window, &MainWindow::resetS, &graph, &Graph::reset);
-  QObject::connect(&graph, &Graph::callTimer, &window, &MainWindow::pause);
 
   window.show();
   return app.exec();

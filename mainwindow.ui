@@ -18,11 +18,8 @@
   </property>
   <widget class="QWidget" name="centralwidget">
    <layout class="QGridLayout" name="gridLayout">
-    <item row="6" column="0" colspan="4">
-     <widget class="Draw" name="widget" native="true">
-      <property name="enabled">
-       <bool>true</bool>
-      </property>
+    <item row="6" column="5" colspan="4">
+     <widget class="Draw" name="widget_2" native="true">
       <property name="minimumSize">
        <size>
         <width>669</width>
@@ -125,18 +122,30 @@
       </property>
      </widget>
     </item>
-    <item row="0" column="7">
-     <widget class="QLineEdit" name="goLineEdit">
+    <item row="5" column="0" colspan="4">
+     <widget class="QPushButton" name="vergeButton">
       <property name="sizePolicy">
-       <sizepolicy hsizetype="Maximum" vsizetype="Fixed">
+       <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
         <horstretch>0</horstretch>
         <verstretch>0</verstretch>
        </sizepolicy>
       </property>
+      <property name="minimumSize">
+       <size>
+        <width>669</width>
+        <height>23</height>
+       </size>
+      </property>
+      <property name="text">
+       <string>Добавить ребро</string>
+      </property>
+      <property name="flat">
+       <bool>false</bool>
+      </property>
      </widget>
     </item>
-    <item row="5" column="8">
-     <widget class="QPushButton" name="resetButton">
+    <item row="5" column="6">
+     <widget class="QPushButton" name="goButton">
       <property name="sizePolicy">
        <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
         <horstretch>0</horstretch>
@@ -144,46 +153,15 @@
        </sizepolicy>
       </property>
       <property name="text">
-       <string>Сброс</string>
+       <string>Обход</string>
       </property>
      </widget>
     </item>
-    <item row="5" column="5" colspan="2">
-     <widget class="QSlider" name="horizontalSlider">
-      <property name="sizePolicy">
-       <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
-        <horstretch>0</horstretch>
-        <verstretch>0</verstretch>
-       </sizepolicy>
-      </property>
-      <property name="maximum">
-       <number>5000</number>
-      </property>
-      <property name="singleStep">
-       <number>10</number>
-      </property>
-      <property name="pageStep">
-       <number>10</number>
-      </property>
-      <property name="orientation">
-       <enum>Qt::Horizontal</enum>
-      </property>
-      <property name="invertedAppearance">
+    <item row="6" column="0" colspan="4">
+     <widget class="Draw" name="widget" native="true">
+      <property name="enabled">
        <bool>true</bool>
       </property>
-      <property name="invertedControls">
-       <bool>true</bool>
-      </property>
-      <property name="tickPosition">
-       <enum>QSlider::TicksBelow</enum>
-      </property>
-      <property name="tickInterval">
-       <number>50</number>
-      </property>
-     </widget>
-    </item>
-    <item row="6" column="5" colspan="4">
-     <widget class="Draw" name="widget_2" native="true">
       <property name="minimumSize">
        <size>
         <width>669</width>
@@ -309,6 +287,23 @@
       </property>
      </widget>
     </item>
+    <item row="5" column="5">
+     <widget class="QLineEdit" name="goLineEdit">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Maximum" vsizetype="Fixed">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
+     </widget>
+    </item>
+    <item row="0" column="5">
+     <widget class="QLabel" name="label">
+      <property name="text">
+       <string>Вершина</string>
+      </property>
+     </widget>
+    </item>
     <item row="0" column="3">
      <widget class="QLineEdit" name="leftEdit">
       <property name="sizePolicy">
@@ -316,6 +311,13 @@
         <horstretch>0</horstretch>
         <verstretch>0</verstretch>
        </sizepolicy>
+      </property>
+     </widget>
+    </item>
+    <item row="0" column="6">
+     <widget class="QLabel" name="label_2">
+      <property name="text">
+       <string>Запустить</string>
       </property>
      </widget>
     </item>
@@ -372,60 +374,6 @@
       </property>
      </widget>
     </item>
-    <item row="5" column="0" colspan="4">
-     <widget class="QPushButton" name="vergeButton">
-      <property name="sizePolicy">
-       <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-        <horstretch>0</horstretch>
-        <verstretch>0</verstretch>
-       </sizepolicy>
-      </property>
-      <property name="minimumSize">
-       <size>
-        <width>669</width>
-        <height>23</height>
-       </size>
-      </property>
-      <property name="text">
-       <string>Добавить ребро</string>
-      </property>
-      <property name="flat">
-       <bool>false</bool>
-      </property>
-     </widget>
-    </item>
-    <item row="5" column="7">
-     <widget class="QPushButton" name="goButton">
-      <property name="sizePolicy">
-       <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-        <horstretch>0</horstretch>
-        <verstretch>0</verstretch>
-       </sizepolicy>
-      </property>
-      <property name="text">
-       <string>Обход</string>
-      </property>
-     </widget>
-    </item>
-    <item row="0" column="5" colspan="2">
-     <widget class="QLabel" name="label_2">
-      <property name="sizePolicy">
-       <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-        <horstretch>0</horstretch>
-        <verstretch>0</verstretch>
-       </sizepolicy>
-      </property>
-      <property name="layoutDirection">
-       <enum>Qt::LeftToRight</enum>
-      </property>
-      <property name="text">
-       <string>Скорость визуализации: 0 c</string>
-      </property>
-      <property name="alignment">
-       <set>Qt::AlignCenter</set>
-      </property>
-     </widget>
-    </item>
    </layout>
   </widget>
   <widget class="QMenuBar" name="menubar">
@@ -434,7 +382,7 @@
      <x>0</x>
      <y>0</y>
      <width>1362</width>
-     <height>21</height>
+     <height>20</height>
     </rect>
    </property>
   </widget>

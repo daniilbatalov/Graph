@@ -1,7 +1,6 @@
 #include "graph.h"
 #include <QPushButton>
 #include <QRandomGenerator>
-#include <QDateTime>
 #include <QPair>
 #include <QLine>
 #include <iostream>
@@ -24,10 +23,6 @@ int Node::get_show_n()
 {
     return show_n;
 }
-bool Node::isHigh()
-{
-    return high;
-}
 void Node::set_x(const int t)
 {
     x = t;
@@ -44,51 +39,19 @@ void Node::set_show_n(const int t)
 {
     show_n = t;
 }
-void Node::setHigh()
-{
-    high = true;
-}
-void Node::setNotHigh()
-{
-    high = false;
-}
-void Node::drawNode()
-{
 
-}
 Node::Node(const int xv, const int yv, const int nv)
 {
     set_x(xv);
     set_y(yv);
     set_n(nv);
     set_show_n(0);
-    setNotHigh();
 }
 
 bool Node::operator!= (const Node& n)
 {
-    return (this->get_n()!=n.n || this->isHigh() != n.high);
+    return (this->get_n()!=n.n);
 }
-
-
-
-int sgn6(int x)
-{
-    if (x > 7)
-    {
-        return -1;
-    }
-    else if (x == 7)
-    {
-        return 0;
-    }
-    else
-    {
-        return 1;
-    }
-}
-
-
 
 void Graph::addEdge(int u, int v)
 {
@@ -102,30 +65,72 @@ void Graph::addEdge(int u, int v)
 }
 void Graph::addNode()
 {
-
-    std::cout << "graph slot got called\n";
     int n, x, y;
+    x = y = 0;
     if (!Nodes.isEmpty())
     {
         n = Nodes.last().get_n() + 1;
-
-
-        x = Nodes.last().get_x() + (100 * sgn6(n)) ;
-        if (n > 6)
+        if (n == 2)
         {
-        y = static_cast<int>(( 270 + sqrt(-x * x + 594 * x - 24705)));
+            x = 147;
+            y = 138;
         }
-        else
+        if (n == 3)
         {
-         y = static_cast<int>(( 270 - sqrt(-x * x + 594 * x - 24705)));
+            x = 247;
+            y = 98;
         }
-
+        if (n == 4)
+        {
+            x = 347;
+            y = 98;
+        }
+        if (n == 5)
+        {
+            x = 447;
+            y = 138;
+        }
+        if (n == 6)
+        {
+            x = 547;
+            y = 238;
+        }
+        if (n == 7)
+        {
+            x = 447;
+            y = 408;
+        }
+        if (n == 8)
+        {
+            x = 347;
+            y = 478;
+        }
+        if (n == 9)
+        {
+            x = 297;
+            y = 488;
+        }
+        if (n == 10)
+        {
+            x = 247;
+            y = 458;
+        }
+        if (n == 11)
+        {
+            x = 147;
+            y = 388;
+        }
+        if (n == 12)
+        {
+            x = 97;
+            y = 333;
+        }
     }
     else
     {
         n = 1;
         x = 47;
-        y = static_cast<int>(270 - sqrt(-x * x + 594 * x - 24705));
+        y = 238;
     }
 
     Nodes.push_back(Node(x, y, n));
@@ -134,42 +139,20 @@ void Graph::addNode()
     emit nodeAddedS(Nodes);
 }
 
-void Graph::DFS(int s, int d)
+void Graph::DFS(int s)
 {
-
   if (used[s-1])
   {
       return;
   }
   count++;
-  Nodes[s-1].setHigh();
   Nodes[s-1].set_show_n(count);
   used[s-1] = true;
   emit nodeAddedS(Nodes);
-  emit callTimer();
-  Nodes[s-1].setNotHigh();
-
 
   for (int u : AdjacencyList[s-1])
   {
-      std::cout << count << "\n";
-
-      DFS(u+1, d);
+      DFS(u+1);
   }
   std::cout << "\n";
-
-
-
-
-}
-void Graph::reset()
-{
-    count = 0;
-    for(int i = 0; i < this->used.length(); i++)
-    {
-        this->used[i] = false;
-        Nodes[i].setNotHigh();
-        Nodes[i].set_show_n(0);
-    }
-    emit nodeAddedS(Nodes);
 }
