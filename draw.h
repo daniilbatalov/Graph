@@ -21,6 +21,6 @@ protected:
 private:
     QVector<Node> nodes;
     QVector<QLine> edges;
-    void doPainting();
+    void doPainting(bool);
 };
 #endif // DRAW_H
