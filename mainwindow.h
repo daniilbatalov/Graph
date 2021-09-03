@@ -17,7 +17,6 @@ public slots:
     void onMakeEgdePushButtonClicked();
 signals:
     void edgeS(int, int);
-    void goS(int);
 public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
@@ -26,10 +25,6 @@ public:
     QLineEdit* getLeftEdit();
     QLineEdit* getRightEdit();
     Draw* getDraw();
-    Draw* getDrawR();
-
-private slots:
-    void on_goButton_clicked();
 private:
     Ui::MainWindow *ui;
 };

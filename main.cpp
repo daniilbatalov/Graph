@@ -17,20 +17,16 @@ int main(int argc, char *argv[]) {
   QPushButton* vrg = window.getEdgeButton();
   QLineEdit* lftdt = window.getLeftEdit();
   QLineEdit* rgtdt = window.getRightEdit();
-  Draw* dr_l= window.getDraw();
-  Draw* dr_r= window.getDrawR();
-
+  Draw* dr = window.getDraw();
   QObject::connect(psh, &QPushButton::clicked, &graph, &Graph::addNode);
-  QObject::connect(&graph, &Graph::nodeAddedS, dr_l, &Draw::drawN);
-  QObject::connect(&graph, &Graph::nodeAddedS, dr_r, &Draw::drawN);
+  QObject::connect(&graph, &Graph::nodeAddedS, dr, &Draw::drawN);
+
   QObject::connect(vrg, &QPushButton::clicked, &window, &MainWindow::onMakeEgdePushButtonClicked);
   QObject::connect(&window, &MainWindow::edgeS, &graph,  &Graph::addEdge);
-  QObject::connect(&graph, &Graph::edgeAddedS, dr_l, &Draw::drawE);
-  QObject::connect(&graph, &Graph::edgeAddedS, dr_r, &Draw::drawE);
-  QObject::connect(dr_l, &Draw::drawnE, lftdt, &QLineEdit::clear);
-  QObject::connect(dr_l, &Draw::drawnE, rgtdt, &QLineEdit::clear);
-  QObject::connect(&window, &MainWindow::goS, &graph, &Graph::DFS);
-
+  QObject::connect(&graph, &Graph::edgeAddedS, dr, &Draw::drawE);
+  QObject::connect(dr, &Draw::drawnE, lftdt, &QLineEdit::clear);
+  QObject::connect(dr, &Draw::drawnE, rgtdt, &QLineEdit::clear);
   window.show();
+
   return app.exec();
 }

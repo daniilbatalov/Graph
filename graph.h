@@ -4,20 +4,17 @@
 #include <QVector>
 #include <QPair>
 #include <QLine>
-
 class Node
 {
 private:
-    int x, y, n, show_n;
+    int x, y, n;
 public:
     int get_x();
     int get_y();
     int get_n();
-    int get_show_n();
     void set_x(const int);
     void set_y(const int);
     void set_n(const int);
-    void set_show_n(const int);
     void drawNode();
     Node(const int, const int, const int);
     bool operator!= (const Node&);
@@ -34,7 +31,6 @@ public:
 public slots:
     void addEdge(int, int);
     void addNode();
-    void DFS(int);
 signals:
     void edgeAddedS(const QVector<QLine>);
     void nodeAddedS(const QVector<Node>);

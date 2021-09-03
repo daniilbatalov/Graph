@@ -1,6 +1,6 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
-#include <iostream>
+
 MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
@@ -25,10 +25,6 @@ Draw* MainWindow::getDraw()
 {
     return ui->widget;
 }
-Draw* MainWindow::getDrawR()
-{
-    return ui->widget_2;
-}
 MainWindow::~MainWindow()
 {
     delete ui;
@@ -38,6 +34,7 @@ void MainWindow::onMakeEgdePushButtonClicked()
 {
     QVector<QLineEdit*> lineEdits = {ui->leftEdit, ui->rightEdit};
     QVector<int> values;
+
 
     for (const QLineEdit* lineEdit : lineEdits)
     {
@@ -49,16 +46,13 @@ void MainWindow::onMakeEgdePushButtonClicked()
         }
     }
 
-    if (!values.empty())
+
+    if (values.empty())
+    {
+
+    }
+    else
     {
         emit edgeS(values[0], values[1]);
     }
-}
-
-void MainWindow::on_goButton_clicked()
-{
-    QLineEdit* line = ui->goLineEdit;
-    int value = line->text().toInt();
-    line->clear();
-    emit goS(value);
 }
